@@ -1,17 +1,16 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name        = 'dashing'
-  s.version     = '1.3.6'
-  s.date        = '2015-04-11'
-  s.executables = %w(dashing)
+  s.name        = 'smashing'
+  s.version     = '1.0.0'
+  s.date        = '2016-10-23'
+  s.executables = %w(smashing)
 
 
-  s.summary     = "The exceptionally handsome dashboard framework."
-  s.description = "This framework lets you build & easily layout dashboards with your own custom widgets. Use it to make a status boards for your ops team, or use it to track signups, conversion rates, or whatever else metrics you'd like to see in one spot. Included with the framework are ready-made widgets for you to use or customize. All of this code was extracted out of a project at Shopify that displays dashboards on TVs around the office."
+  s.summary     = "The wonderfully excellent dashboard framework."
+  s.description = "A framework for pulling together an overview of data that is important to your team and displaying it easily on TVs around the office. You write a bit of ruby code to gather data from some services and let Smashing handle the rest - displaying that data in a wonderfully simple layout. Built for developers and hackers, Smashing is highly customizable while maintaining humble roots that make it approachable to beginners."
   s.author      = "Daniel Beauchamp"
-  s.email       = 'daniel.beauchamp@shopify.com'
-  s.homepage    = 'http://shopify.github.com/dashing'
+  s.homepage    = 'http://smashing.github.io'
   s.license     = "MIT"
 
   s.files = Dir['README.md', 'javascripts/**/*', 'templates/**/*','templates/**/.[a-z]*', 'lib/**/*']
