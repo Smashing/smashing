@@ -5,16 +5,18 @@ Smashing, the spiritual successor to [Dashing](https://github.com/Shopify/dashin
 **Installation**:
 
 ```bash
+# Install bundler
 $ gem install bundler
-Fetching: bundler-X.X.X.gem (100%)
-# <snip>
+# Install smashing
 $ gem install smashing
-Fetching: smashing-1.0.0.gem (100%)
-# <snip>
+# Create a new project
 $ smashing new my-project
-create  my-project
-create  my-project/.gitignore
-# <snip>
+# Change Directory into the project
+$ cd my-project
+# Install the bundle of project specific gems
+$ bundle
+# Start the example dashboard!
+$ smashing start
 ```
 
 [Check out our wiki](https://github.com/dashing-io/smashing/wiki).
