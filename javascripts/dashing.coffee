@@ -57,15 +57,21 @@ class Dashing.Widget extends Batman.View
     # In case the events from the server came before the widget was rendered
     lastData = Dashing.lastEvents[@id]
     if lastData
+      lastData = @select(lastData)
       @mixin(lastData)
       @onData(lastData)
 
   receiveData: (data) =>
+    data = @select(data)
     @mixin(data)
     @onData(data)
 
   onData: (data) =>
     # Widgets override this to handle incoming data
+
+  select: (data) =>
+    # Widgets override this to transform data before it is applied to the model
+    return data
 
 Dashing.AnimatedValue =
   get: Batman.Property.defaultAccessor.get
