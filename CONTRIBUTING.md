@@ -1,8 +1,15 @@
 # Welcome!
+
 Thank you for your interest in Smashing! This project is a fork of Dashing, the exceptionally handsome dashboard framework. We're still in the process of transitioning, so please excuse the mess.
+
+For general questions on new features, widgets, or ideas, please consider using the
+[project mailing list](https://groups.google.com/forum/#!forum/smashing-dashboard). This way
+developers can maintain code-related issues in GitHub, and help users with users with simple
+usage or widgets questions in a more appropriate channel.
 
 <a name="issues"></a>
 ## Have an Issue
+
 If you run into problems with Smashing (or Dashing), please take these steps before
 submitting an issue:
 
@@ -12,6 +19,7 @@ submitting an issue:
 
 <a name="features"></a>
 ## Feature Requests
+
 Feature requests are welcome, but take a moment to consider whether your idea
 fits with the scope and aim of the project. A good rule of thumb is to apply
 the 80/20 rule: every feature should be useful to at least 80% of users. Adding
@@ -23,6 +31,9 @@ quite fit with the core use of Smashing, it may be a good candidate for an
 external Gem which supercharges a project. An excellent example of this is
 [dashing-contrib](https://github.com/QubitProducts/dashing-contrib). If you
 do create a third-party extension for Smashing, please add it [here](https://github.com/Dashing-io/dashing/wiki/Additional-Widgets#other-third-party-tools).
+
+For general questions on new features, widgets, or ideas, please use the
+[project mailing list](https://groups.google.com/forum/#!forum/smashing-dashboard).
 
 <a name="pull-requests"></a>
 ## Pull Requests
@@ -44,6 +55,7 @@ GitHub has [excellent documentation on how to use Pull Requests.](https://help.g
 
 <a name="commit-msgs"></a>
 ## Git Commit Message Suggestions
+
 * Consider starting the commit message with an applicable emoji:
     * :art: `:art:` when improving the format/structure of the code
     * :moyai: `:moyai:` when adding a new feature
