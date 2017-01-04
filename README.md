@@ -4,7 +4,7 @@ Smashing, the spiritual successor to [Dashing](https://github.com/Shopify/dashin
 
 ## Community
 
-Feel free to submit issues for bugs, new features, and enhancements in [GitHub](https://github.com/SmashingDashboard/smashing/issues). For more general questions, or help with widgets, please use the [project mailing list](https://groups.google.com/forum/#!forum/smashing-dashboard).
+Feel free to submit issues for bugs, new features, and enhancements in [GitHub](https://github.com/SmashingDashboard/smashing/issues). For more general questions, or help with widgets, please use the [gitter chatroom](https://gitter.im/Smashing).
 
 ## Installation
 
