@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Dashing - The exceptionally handsome dashboard framework.</title>
+  <title>Smashing, the spiritual successor to Dashing.</title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
@@ -12,18 +12,14 @@
 
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="style.css">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-82702-43']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    ga('create', 'UA-89786279-1', 'auto');
+    ga('send', 'pageview');
 
   </script>
 </head>
@@ -32,7 +28,8 @@
     <nav id="main-navigation">
       <ul class="clearfix">
         <li><a href="#overview">Introduction</a></li>
-        <li><a href="http://dashingdemo.herokuapp.com/sample" target="_blank">Demo</a></li>
+        <!--<li><a href="http://
+demo.herokuapp.com/sample" target="_blank">Demo</a></li>-->
         <li><a href="#setup">Getting Started</a></li>
         <li><a href="#widgets">Example Setup</a></li>
         <li><a href="#data">API</a></li>
@@ -43,45 +40,42 @@
 
     <section id="heading" class="clearfix">
       <div id="logo-heading">
-        <h1>Dashing</h1>
-        <h2>The exceptionally handsome dashboard framework.</h2>
+        <h1>Smashing</h1>
+        <h2>Smashing, the spiritual successor to Dashing, is a Sinatra based framework that lets you build excellent dashboards. It looks especially great on TVs.</h2>
       </div>
       <div id="logo-bowtie">
         <img src="images/bowtie.png"/>
       </div>
       <div id="actions">
-        <a class="button" href="https://github.com/Shopify/dashing" target="_blank"><i class="icon-github"></i> View on Github</a>
-        <a class="button" href="https://github.com/Shopify/dashing/zipball/master"><i class="icon-download"></i> Download ZIP</a>
+        <a class="button" href="https://github.com/Smashing/smashing" target="_blank"><i class="icon-github"></i> View on Github</a>
+        <a class="button" href="https://github.com/Smashing/smashing/zipball/master"><i class="icon-download"></i> Download ZIP</a>
       </div>
       <div id="actions-github">
-        <iframe src="http://ghbtns.com/github-btn.html?user=shopify&repo=dashing&type=fork&count=false"
+        <iframe src="http://ghbtns.com/github-btn.html?user=Smashing&repo=smashing&type=fork&count=false"
         allowtransparency="true" frameborder="0" scrolling="0" width="51px" height="20px"></iframe>
-        <iframe src="http://ghbtns.com/github-btn.html?user=shopify&repo=dashing&type=watch&count=true"
+        <iframe src="http://ghbtns.com/github-btn.html?user=Smashing&repo=smashing&type=watch&count=true"
         allowtransparency="true" frameborder="0" scrolling="0" width="109px" height="20px"></iframe>
       </div>
     </section>
 
 
     <section class="section-box" id="overview">
-      <div class="deprecation-warning">
-        Heads-up: Dashing still works great, but is no longer maintained. Read up about it <a href="https://github.com/Shopify/dashing/issues/711">over here</a>.
-      </div>
       <h3 class="section-title">Introduction</h3>
       <div class="section-content">
-        <p>Dashing is a Sinatra based framework that lets you build beautiful dashboards.</p>
-        <p>Check out a demo over <a href="http://dashingdemo.herokuapp.com/sample" target="_blank">here</a>. <a href="http://dashingdemo.herokuapp.com/sampletv" target="_blank">Here's another one</a>, optimized for 1080p screens.</p>
+        <p>Smashing is a Sinatra based framework that lets you build beautiful dashboards.</p>
+<!--         <p>Check out a demo over <a href="http://dashingdemo.herokuapp.com/sample" target="_blank">here</a>. <a href="http://dashingdemo.herokuapp.com/sampletv" target="_blank">Here's another one</a>, optimized for 1080p screens.</p> -->
 
         <p><strong>Key features:</strong>
         <ul>
           <li>Use premade widgets, or fully create your own with scss, html, and coffeescript.</li>
           <li>Widgets harness the power of data bindings to keep things DRY and simple. Powered by <a href="http://batmanjs.org/" target="_blank">batman.js</a>.</li>
           <li>Use the API to push data to your dashboards, or make use of a simple ruby DSL for fetching data.</li>
-          <li>Drag & Drop interface for re-arranging your widgets.</li>
-          <li><a href="https://github.com/Shopify/dashing/wiki/How-to%3A-Deploy-to-Heroku" target="_blank">Host your dashboards on Heroku</a> in less than 30 seconds.</li>
+          <li>Drag &amp; Drop interface for re-arranging your widgets.</li>
+          <li><a href="https://github.com/Smashing/smashing/wiki/How-to%3A-Deploy-to-Heroku" target="_blank">Host your dashboards on Heroku</a> in less than 30 seconds.</li>
         </ul>
         </p>
 
-        <p>This project was created at <a href="http://shopify.com" target="_blank">Shopify</a> for displaying custom dashboards on TVs around the office.</p>
+        <p>This project is a fork of Dashing, an excellent framework created at <a href="http://shopify.com" target="_blank">Shopify</a> for displaying custom dashboards on TVs around the office.</p>
       </div>
     </section>
 
@@ -91,11 +85,11 @@
         <ol>
           <li>
             <p> Install the gem from the command line. Make sure you have Ruby 1.9+</p>
-            <p><code>$ gem install dashing</code></p>
+            <p><code>$ gem install smashing</code></p>
           </li>
           <li>
             <p> Generate a new project</p>
-            <p><code>$ dashing new sweet_dashboard_project</code></p>
+            <p><code>$ smashing new sweet_dashboard_project</code></p>
           </li>
           <li>
             <p> Change your directory to <code>sweet_dashboard_project</code> and bundle gems</p>
@@ -103,14 +97,14 @@
           </li>
           <li>
             <p>Start the server!</p>
-            <p><code>$ dashing start</code></p>
+            <p><code>$ smashing start</code></p>
           </li>
           <li>
             <p> Point your browser at <a href="http://localhost:3030">localhost:3030</a> and have fun!</p>
           </li>
         </ol>
         <hr/>
-        <p>Every new Dashing project comes with sample widgets & sample dashboards for you to explore. The directory is setup as follows:</p>
+        <p>Every new Smashing project comes with sample widgets &amp; sample dashboards for you to explore. The directory is setup as follows:</p>
         <ul>
           <li><strong>Assets</strong> &mdash;  All your images, fonts, and js/coffeescript libraries. <i>Uses <a href="https://github.com/sstephenson/sprockets" target="_blank">Sprockets</a></i></li>
           <li><strong>Dashboards</strong> &mdash; One .erb file for each dashboard that contains the layout for the widgets.</li>
@@ -144,7 +138,7 @@
         <ul>
           <li>an HTML file used for layout and bindings</li>
           <li>a SCSS file for styles</li>
-          <li>a coffeescript file which allows you to handle incoming data & functionality</li>
+          <li>a coffeescript file which allows you to handle incoming data &amp; functionality</li>
         </ul>
 
         <h5><code>Number</code> widget's HTML:</h5>
@@ -158,7 +152,7 @@
 
         <h4 id="positioning">Laying out the widgets</h4>
 
-        <p>Dashing uses <a href="http://gridster.net/" target="_blank">gridster.js</a> to create a layout for your widgets. Each widget is part of an unordered list. The <code>&lt;li&gt;</code> element for a widget contains:</p>
+        <p>Smashing uses <a href="http://gridster.net/" target="_blank">gridster.js</a> to create a layout for your widgets. Each widget is part of an unordered list. The <code>&lt;li&gt;</code> element for a widget contains:</p>
         <ul>
           <li><code>data-row</code> : What row the widget is on.</li>
           <li><code>data-col</code> : What column the widget is on</li>
@@ -180,7 +174,7 @@
 
         <h4>Jobs</h4>
 
-        <p>Dashing uses <a href="https://github.com/jmettraux/rufus-scheduler" target="_blank">rufus-scheduler</a> to schedule jobs. You can make a new job with <code>dashing generate job sample_job</code>, which will create a file in the jobs directory called <code>sample_job.rb</code>.</p>
+        <p>Smashing uses <a href="https://github.com/jmettraux/rufus-scheduler" target="_blank">rufus-scheduler</a> to schedule jobs. You can make a new job with <code>dashing generate job sample_job</code>, which will create a file in the jobs directory called <code>sample_job.rb</code>.</p>
 
         <h6>Example</h6>
         <script src="https://gist.github.com/3978821.js?file=sample_job.rb"></script>
@@ -191,7 +185,7 @@
         <br/>
         <p>Jobs are where you put stuff such as fetching metrics from a database, or calling a third party API like Twitter. Since the data fetch is happening in only one place, it means that all instances of widgets are in sync. <a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/" target="_blank">Server Sent Events</a> are used in order to stream data to the dashboards. </p>
 
-        <p>Note that if you modify a job then Dashing needs to be restarted to pick up the changes.</p>
+        <p>Note that if you modify a job then Smashing needs to be restarted to pick up the changes.</p>
         <h4>API</h4>
 
         <p>Your widgets can be updated directly over HTTP. Post the data you want in json to <code>/widgets/widget_id</code>.
@@ -223,8 +217,8 @@
       <section class="section-box" id="resources">
         <h3 class="section-title">Additional Resources</h3>
         <div class="section-content">
-          <p>Check out the <a href="https://github.com/Shopify/dashing/wiki" target="_blank">wiki</a> for interesting tips such as hosting on Heroku, or adding authentication.</p>
-          <p>Be sure to look at <a href="https://github.com/Shopify/dashing/wiki/Additional-Widgets" target="_blank">the list of third party widgets.</a></p>
+          <p>Check out the <a href="https://github.com/Smashing/smashing/wiki" target="_blank">wiki</a> for interesting tips such as hosting on Heroku, or adding authentication.</p>
+          <p>Be sure to look at <a href="https://github.com/Smashing/smashing/wiki/Additional-Widgets" target="_blank">the list of third party widgets.</a></p>
         </div>
       </section>
 
@@ -251,15 +245,15 @@
       <section class="section-box" id="contributors">
         <h3 class="section-title">Contributors</h3>
         <div class="section-content">
-          <p><a href="https://github.com/Shopify/dashing/graphs/contributors">See contributors on GitHub</a></p>
+          <p><a href="https://github.com/Smashing/smashing/graphs/contributors">See contributors on GitHub</a></p>
         </div>
-        <p>Although this project is not being actively maintained, there are tons of widgets being added by the community; <a href="https://github.com/Shopify/dashing/wiki/Additional-Widgets" target="_blank">especially new widgets!</a></p>
+        <p>Although this project is not being actively maintained, there are tons of widgets being added by the community; <a href="https://github.com/Smashing/smashing/wiki/Additional-Widgets" target="_blank">especially new widgets!</a></p>
       </section>
 
       <section class="section-box" id="license">
         <h3 class="section-title">License</h3>
         <div class="section-content">
-          <p>Dashing is released under the <a href="https://github.com/Shopify/dashing/blob/master/MIT-LICENSE" target="_blank">MIT license</a></p>
+          <p>Smashing is released under the <a href="https://github.com/Smashing/smashing/blob/master/MIT-LICENSE" target="_blank">MIT license</a></p>
         </div>
       </section>
       <small>Copyright 2015 - Shopify</small>
