@@ -3,7 +3,7 @@
 Thank you for your interest in Smashing! This project is a fork of Dashing, the exceptionally handsome dashboard framework. We're still in the process of transitioning, so please excuse the mess.
 
 For general questions on new features, widgets, or ideas, please consider using the
-[project mailing list](https://groups.google.com/forum/#!forum/smashing-dashboard). This way
+[Gitter Chat Room](https://gitter.im/Smashing/Lobby). This way
 developers can maintain code-related issues in GitHub, and help users with users with simple
 usage or widgets questions in a more appropriate channel.
 
