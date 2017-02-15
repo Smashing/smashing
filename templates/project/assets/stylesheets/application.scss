@@ -8,13 +8,13 @@
 $background-color: #222;
 $text-color: #fff;
 
-$background-warning-color-1: #e82711;
-$background-warning-color-2: #9b2d23;
-$text-warning-color: #fff;
-
-$background-danger-color-1: #eeae32;
-$background-danger-color-2: #ff9618;
+$background-danger-color-1: #e82711;
+$background-danger-color-2: #9b2d23;
 $text-danger-color: #fff;
+
+$background-warning-color-1: #eeae32;
+$background-warning-color-2: #ff9618;
+$text-warning-color: #fff;
 
 @-webkit-keyframes status-warning-background {
   0%   { background-color: $background-warning-color-1; }
