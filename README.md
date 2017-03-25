@@ -1,12 +1,12 @@
 [![Gitter chat](https://badges.gitter.im/smashing.png)](https://gitter.im/Smashing)
 
-# [Smashing](https://github.com/dashing-io/smashing/wiki)
+# [Smashing](https://github.com/Smashing/smashing/wiki)
 
 Smashing, the spiritual successor to [Dashing](https://github.com/Shopify/dashing), is a Sinatra based framework that lets you build excellent dashboards. It looks especially great on TVs.
 
 ## Community
 
-Feel free to submit issues for bugs, new features, and enhancements in [GitHub](https://github.com/SmashingDashboard/smashing/issues). For more general questions, or help with widgets, please use the [gitter chatroom](https://gitter.im/Smashing).
+Feel free to submit issues for bugs, new features, and enhancements in [GitHub](https://github.com/Smashing/smashing/issues). For more general questions, or help with widgets, please use the [gitter chatroom](https://gitter.im/Smashing).
 
 ## Installation
 
@@ -25,7 +25,7 @@ $ bundle
 $ smashing start
 ```
 
-[Check out our wiki](https://github.com/SmashingDashboard/smashing/wiki).
+[Check out our wiki](https://github.com/Smashing/smashing/wiki).
 
 Note: This is a fork of the Dashing project, which is no longer being maintained. Read about that [here](https://github.com/Shopify/dashing/issues/711).
 
