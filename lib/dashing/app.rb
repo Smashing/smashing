@@ -34,16 +34,18 @@ set :root, Dir.pwd
 set :sprockets,     Sprockets::Environment.new(settings.root)
 set :assets_prefix, '/assets'
 set :digest_assets, false
-set server: 'puma', connections: [], history_file: 'history.yml'
+set :server, 'puma'
+set :connections, []
+set :history_file, 'history.yml'
 set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
 set :default_dashboard, nil
 set :auth_token, nil
 
 if File.exists?(settings.history_file)
-  set history: YAML.load_file(settings.history_file)
+  set :history, YAML.load_file(settings.history_file)
 else
-  set history: {}
+  set :history, {}
 end
 
 %w(javascripts stylesheets fonts images).each do |path|
@@ -55,7 +57,7 @@ end
 end
 
 not_found do
-  send_file File.join(settings.public_folder, '404.html'), status: 404
+  send_file File.join(settings.public_folder, '404.html'), :status => 404
 end
 
 at_exit do
@@ -131,6 +133,7 @@ get '/views/:widget?.html' do
     file = File.join(settings.root, "widgets", params[:widget], "#{params[:widget]}.#{suffix}")
     return engines.first.new(file).render if File.exist? file
   end
+  "Drats! Unable to find a widget file named: #{params[:widget]} to render."
 end
 
 def send_event(id, body, target=nil)
