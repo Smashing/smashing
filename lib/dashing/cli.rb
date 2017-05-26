@@ -55,7 +55,7 @@ module Dashing
     end
 
     desc "start", "Starts the server in style!"
-    method_option :job_path, :desc => "Specify the directory where jobs are stored"
+    method_option :job_path, desc: "Specify the directory where jobs are stored"
     def start(*args)
       daemonize = args.include?('-d')
       args = args.join(' ')
@@ -98,10 +98,10 @@ module Dashing
         if file =~ /\.(html|coffee|scss)\z/
           widget_name = File.basename(file, '.*')
           new_path = File.join(Dir.pwd, 'widgets', widget_name, file)
-          create_file(new_path, details['content'], :skip => skip_overwrite)
+          create_file(new_path, details['content'], skip: skip_overwrite)
         elsif file.end_with?('.rb')
           new_path = File.join(Dir.pwd, 'jobs', file)
-          create_file(new_path, details['content'], :skip => skip_overwrite)
+          create_file(new_path, details['content'], skip: skip_overwrite)
         end
       end
     end

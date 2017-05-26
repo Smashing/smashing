@@ -57,7 +57,7 @@ end
 end
 
 not_found do
-  send_file File.join(settings.public_folder, '404.html'), :status => 404
+  send_file File.join(settings.public_folder, '404.html'), status: 404
 end
 
 at_exit do
