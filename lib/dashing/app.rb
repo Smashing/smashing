@@ -41,6 +41,7 @@ set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
 set :default_dashboard, nil
 set :auth_token, nil
+set :template_languages, %i[html erb]
 
 if File.exists?(settings.history_file)
   set :history, YAML.load_file(settings.history_file)

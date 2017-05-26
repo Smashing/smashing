@@ -6,7 +6,6 @@ configure do
   # See http://www.sinatrarb.com/intro.html > Available Template Languages on
   # how to add additional template languages.
   set :template_languages, %i[html erb]
-  template_languages << :haml if defined?(Haml)
 
   helpers do
     def protected!
