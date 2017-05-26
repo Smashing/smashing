@@ -43,7 +43,7 @@ set :default_dashboard, nil
 set :auth_token, nil
 set :template_languages, %i[html erb]
 
-if File.exists?(settings.history_file)
+if File.exist?(settings.history_file)
   set :history, YAML.load_file(settings.history_file)
 else
   set :history, {}
@@ -171,7 +171,7 @@ def require_glob(relative_glob)
 end
 
 settings_file = File.join(settings.root, 'config/settings.rb')
-require settings_file if File.exists?(settings_file)
+require settings_file if File.exist?(settings_file)
 
 {}.to_json # Forces your json codec to initialize (in the event that it is lazily loaded). Does this before job threads start.
 job_path = ENV["JOB_PATH"] || 'jobs'
