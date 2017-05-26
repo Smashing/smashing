@@ -33,7 +33,7 @@ def temp
   yield path
 ensure
   Dir.chdir WORKING_DIRECTORY
-  FileUtils.rm_rf(path) if File.exists?(path)
+  FileUtils.rm_rf(path) if File.exist?(path)
 end
 
 module Dashing

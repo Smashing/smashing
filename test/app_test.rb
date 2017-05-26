@@ -160,6 +160,11 @@ class AppTest < Dashing::Test
       app.settings.public_folder = File.join(dir, 'new_project/public')
       app.settings.views = File.join(dir, 'new_project/dashboards')
       app.settings.root = File.join(dir, 'new_project')
+
+      app.settings.raise_errors = true
+      app.settings.dump_errors = false
+      app.settings.show_exceptions = false
+
       yield app.settings.root
     end
   end
