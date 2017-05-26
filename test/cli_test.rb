@@ -101,34 +101,6 @@ class CLITest < Dashing::Test
     assert_includes output, 'Could not find gist at '
   end
 
-  def test_start_task_starts_thin_with_default_port
-    command = 'bundle exec thin -R config.ru start -p 3030 '
-    @cli.stubs(:run_command).with(command).once
-    @cli.start
-  end
-
-  def test_start_task_starts_thin_with_specified_port
-    command = 'bundle exec thin -R config.ru start -p 2020'
-    @cli.stubs(:run_command).with(command).once
-    @cli.start('-p', '2020')
-  end
-
-  def test_start_task_supports_job_path_option
-    commands = [
-      'export JOB_PATH=other_spot; ',
-      'bundle exec thin -R config.ru start -p 3030 '
-    ]
-
-    @cli.stubs(:options).returns(job_path: 'other_spot')
-    @cli.stubs(:run_command).with(commands.join('')).once
-    @cli.start
-  end
-
-  def test_stop_task_stops_thin_server
-    @cli.stubs(:run_command).with('bundle exec thin stop')
-    @cli.stop
-  end
-
   def test_job_task_requires_job_file
     Dir.stubs(:pwd).returns('')
     @cli.stubs(:require_file).with('/jobs/special_job.rb').once

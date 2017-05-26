@@ -54,22 +54,6 @@ module Dashing
       say set_color("Could not find gist at #{public_url}"), :red
     end
 
-    desc "start", "Starts the server in style!"
-    method_option :job_path, :desc => "Specify the directory where jobs are stored"
-    def start(*args)
-      port_option = args.include?('-p') ? '' : ' -p 3030'
-      args = args.join(' ')
-      command = "bundle exec thin -R config.ru start#{port_option} #{args}"
-      command.prepend "export JOB_PATH=#{options[:job_path]}; " if options[:job_path]
-      run_command(command)
-    end
-
-    desc "stop", "Stops the thin server"
-    def stop
-      command = "bundle exec thin stop"
-      run_command(command)
-    end
-
     desc "job JOB_NAME AUTH_TOKEN(optional)", "Runs the specified job. Make sure to supply your auth token if you have one set."
     def job(name, auth_token = "")
       Dir[File.join(Dir.pwd, 'lib/**/*.rb')].each {|file| require_file(file) }
@@ -94,10 +78,10 @@ module Dashing
         if file =~ /\.(html|coffee|scss)\z/
           widget_name = File.basename(file, '.*')
           new_path = File.join(Dir.pwd, 'widgets', widget_name, file)
-          create_file(new_path, details['content'], :skip => skip_overwrite)
+          create_file(new_path, details['content'], skip: skip_overwrite)
         elsif file.end_with?('.rb')
           new_path = File.join(Dir.pwd, 'jobs', file)
-          create_file(new_path, details['content'], :skip => skip_overwrite)
+          create_file(new_path, details['content'], skip: skip_overwrite)
         end
       end
     end

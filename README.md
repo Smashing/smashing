@@ -22,7 +22,7 @@ $ cd my-project
 # Install the bundle of project specific gems
 $ bundle
 # Start the example dashboard!
-$ smashing start
+$ puma
 ```
 
 [Check out our wiki](https://github.com/Smashing/smashing/wiki).

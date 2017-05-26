@@ -1,12 +1,12 @@
-require 'sinatra'
-require 'sprockets'
-require 'sinatra/content_for'
-require 'rufus/scheduler'
 require 'coffee-script'
-require 'sass'
 require 'json'
+require 'rufus/scheduler'
+require 'sass'
+require 'sinatra'
+require 'sinatra/content_for'
+require 'sinatra/streaming'
+require 'sprockets'
 require 'yaml'
-require 'thin'
 
 SCHEDULER = Rufus::Scheduler.new
 
@@ -34,13 +34,14 @@ set :root, Dir.pwd
 set :sprockets,     Sprockets::Environment.new(settings.root)
 set :assets_prefix, '/assets'
 set :digest_assets, false
-set :server, 'thin'
+set :server, 'puma'
 set :connections, []
 set :history_file, 'history.yml'
 set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
 set :default_dashboard, nil
 set :auth_token, nil
+set :template_languages, %i[html erb]
 
 if File.exists?(settings.history_file)
   set :history, YAML.load_file(settings.history_file)
@@ -57,7 +58,7 @@ end
 end
 
 not_found do
-  send_file File.join(settings.public_folder, '404.html'), :status => 404
+  send_file File.join(settings.public_folder, '404.html'), status: 404
 end
 
 at_exit do
@@ -72,21 +73,31 @@ get '/' do
   redirect "/" + dashboard
 end
 
-get '/events', :provides => 'text/event-stream' do
+
+get '/events', provides: 'text/event-stream' do
   protected!
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
-  stream :keep_open do |out|
-    settings.connections << out
+  stream do |out|
     out << latest_events
-    out.callback { settings.connections.delete(out) }
+    settings.connections << connection = {out: out, mutex: Mutex.new, terminated: false}
+    terminated = false
+
+    loop do
+      connection[:mutex].synchronize do
+        terminated = true if connection[:terminated]
+      end
+      break if terminated
+    end
+
+    settings.connections.delete(connection)
   end
 end
 
 get '/:dashboard' do
   protected!
-  tilt_html_engines.each do |suffix, _|
-    file = File.join(settings.views, "#{params[:dashboard]}.#{suffix}")
-    return render(suffix.to_sym, params[:dashboard].to_sym) if File.exist? file
+  settings.template_languages.each do |language|
+    file = File.join(settings.views, "#{params[:dashboard]}.#{language}")
+    return render(language, params[:dashboard].to_sym) if File.exist?(file)
   end
 
   halt 404
@@ -119,21 +130,12 @@ end
 
 get '/views/:widget?.html' do
   protected!
-  tilt_html_engines.each do |suffix, engines|
-    file = File.join(settings.root, "widgets", params[:widget], "#{params[:widget]}.#{suffix}")
-    return engines.first.new(file).render if File.exist? file
+  settings.template_languages.each do |language|
+    file = File.join(settings.root, "widgets", params[:widget], "#{params[:widget]}.#{language}")
+    return Tilt[language].new(file).render if File.exist?(file)
   end
+
   "Drats! Unable to find a widget file named: #{params[:widget]} to render."
-end
-
-Thin::Server.class_eval do
-  def stop_with_connection_closing
-    Sinatra::Application.settings.connections.dup.each(&:close)
-    stop_without_connection_closing
-  end
-
-  alias_method :stop_without_connection_closing, :stop
-  alias_method :stop, :stop_with_connection_closing
 end
 
 def send_event(id, body, target=nil)
@@ -141,7 +143,18 @@ def send_event(id, body, target=nil)
   body[:updatedAt] ||= Time.now.to_i
   event = format_event(body.to_json, target)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
-  Sinatra::Application.settings.connections.each { |out| out << event }
+  Sinatra::Application.settings.connections.each do |connection|
+    connection[:mutex].synchronize do
+      begin
+        connection[:out] << event unless connection[:out].closed?
+      rescue Puma::ConnectionError
+        connection[:terminated] = true
+      rescue Exception => e
+        connection[:terminated] = true
+        puts e
+      end
+    end
+  end
 end
 
 def format_event(body, name=nil)
@@ -160,13 +173,6 @@ def first_dashboard
   files = Dir[File.join(settings.views, '*')].collect { |f| File.basename(f, '.*') }
   files -= ['layout']
   files.sort.first
-end
-
-def tilt_html_engines
-  Tilt.mappings.select do |_, engines|
-    default_mime_type = engines.first.default_mime_type
-    default_mime_type.nil? || default_mime_type == 'text/html'
-  end
 end
 
 def require_glob(relative_glob)
