@@ -138,7 +138,7 @@ end
 
 def send_event(id, body, target=nil)
   body[:id] = id
-  body[:updatedAt] ||= Time.now.to_i
+  body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i 
   event = format_event(body.to_json, target)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
   Sinatra::Application.settings.connections.each { |out| out << event }
