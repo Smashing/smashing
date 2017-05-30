@@ -9,6 +9,7 @@
   <title><%= yield_content(:title) %></title>
 
   <!-- The javascript and css are managed by sprockets. The files can be found in the /assets folder-->
+  <script type="text/javascript" src="/assets/dashing_logger.js"></script>
   <script type="text/javascript" src="/assets/application.js"></script>
   <link rel="stylesheet" href="/assets/application.css">
 
@@ -17,6 +18,10 @@
 
 </head>
   <body>
+    <div id="connection_error">
+      <h1>Connection error</h1>
+      <p>Check that the server is up and reachable</p>
+    </div>
     <div id="container">
       <%= yield %>
     </div>
