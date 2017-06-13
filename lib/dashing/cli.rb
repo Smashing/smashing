@@ -86,7 +86,11 @@ module Dashing
     private
 
     def run_command(command)
-      system(command)
+      begin
+        system(command)
+      rescue Interrupt => e
+        say "Exiting..."
+      end
     end
 
     def install_widget_from_gist(gist, skip_overwrite)
