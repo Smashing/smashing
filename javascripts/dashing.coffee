@@ -46,7 +46,7 @@ class Dashing.Widget extends Batman.View
 
   @accessor 'updatedAtMessage', ->
     if updatedAt = @get('updatedAt')
-      timestamp = new Date(updatedAt * 1000)
+      timestamp = new Date(updatedAt)
       hours = timestamp.getHours()
       minutes = ("0" + timestamp.getMinutes()).slice(-2)
       "Last updated at #{hours}:#{minutes}"
