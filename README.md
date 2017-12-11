@@ -1,4 +1,4 @@
-[![Gitter chat](https://badges.gitter.im/smashing.png)](https://gitter.im/Smashing)
+[![Gitter chat](https://badges.gitter.im/smashing.svg)](https://gitter.im/Smashing)
 
 # [Smashing](https://github.com/Smashing/smashing/wiki)
 
