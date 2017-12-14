@@ -6,7 +6,6 @@ require 'coffee-script'
 require 'sass'
 require 'json'
 require 'yaml'
-require 'thin'
 
 SCHEDULER = Rufus::Scheduler.new
 
@@ -34,7 +33,7 @@ set :root, Dir.pwd
 set :sprockets,     Sprockets::Environment.new(settings.root)
 set :assets_prefix, '/assets'
 set :digest_assets, false
-set :server, 'thin'
+set :server, 'puma'
 set :connections, []
 set :history_file, 'history.yml'
 set :public_folder, File.join(settings.root, 'public')
@@ -75,10 +74,19 @@ end
 get '/events', :provides => 'text/event-stream' do
   protected!
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
-  stream :keep_open do |out|
-    settings.connections << out
+  stream do |out|
     out << latest_events
-    out.callback { settings.connections.delete(out) }
+    settings.connections << connection = {out: out, mutex: Mutex.new, terminated: false}
+    terminated = false
+
+    loop do
+      connection[:mutex].synchronize do
+        terminated = true if connection[:terminated]
+      end
+      break if terminated
+    end
+
+    settings.connections.delete(connection)
   end
 end
 
@@ -126,22 +134,23 @@ get '/views/:widget?.html' do
   "Drats! Unable to find a widget file named: #{params[:widget]} to render."
 end
 
-Thin::Server.class_eval do
-  def stop_with_connection_closing
-    Sinatra::Application.settings.connections.dup.each(&:close)
-    stop_without_connection_closing
-  end
-
-  alias_method :stop_without_connection_closing, :stop
-  alias_method :stop, :stop_with_connection_closing
-end
-
 def send_event(id, body, target=nil)
   body[:id] = id
-  body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i 
+  body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i
   event = format_event(body.to_json, target)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
-  Sinatra::Application.settings.connections.each { |out| out << event }
+  Sinatra::Application.settings.connections.each do |connection|
+    connection[:mutex].synchronize do
+      begin
+        connection[:out] << event unless connection[:out].closed?
+      rescue Puma::ConnectionError
+        connection[:terminated] = true
+      rescue Exception => e
+        connection[:terminated] = true
+        puts e
+      end
+    end
+  end
 end
 
 def format_event(body, name=nil)
