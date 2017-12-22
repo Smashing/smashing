@@ -14,8 +14,9 @@ If you run into problems with Smashing (or Dashing), please take these steps bef
 submitting an issue:
 
 1. Check the [Troubleshooting Guide](https://github.com/Dashing-io/dashing/wiki#how-tos) in the wiki.
-2. Use the [GitHub Issue Search](https://help.github.com/articles/searching-issues/) to check if the issue has already been reported.
-3. Submit your issue to our Issue Tracker. Please provide as much helpful information as possible, preferably making use of a [reduced test case](https://developer.mozilla.org/en-US/docs/Mozilla/QA/Reducing_testcases).
+2. Ask in the [Gitter Chat Room](https://gitter.im/Smashing/Lobby) - please do not submit issues for support requests.
+3. Use the [GitHub Issue Search](https://help.github.com/articles/searching-issues/) to check if the issue has already been reported.
+4. Submit your issue to our Issue Tracker. Please provide as much helpful information as possible, preferably making use of a [reduced test case](https://developer.mozilla.org/en-US/docs/Mozilla/QA/Reducing_testcases).
 
 <a name="features"></a>
 ## Feature Requests
