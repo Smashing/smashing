@@ -41,6 +41,7 @@ set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
 set :default_dashboard, nil
 set :auth_token, nil
+set :dashboard_channels, {}
 
 if File.exists?(settings.history_file)
   set :history, YAML.load_file(settings.history_file)
@@ -74,11 +75,22 @@ end
 
 get '/events', :provides => 'text/event-stream' do
   protected!
+
+  if params[:dashboard]
+    dashboard = params[:dashboard].to_s.to_sym
+    should_push_es_to_channel = dashboard && settings.dashboard_channels.key?(dashboard)
+  end
+
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
   stream :keep_open do |out|
     settings.connections << out
+    settings.dashboard_channels[dashboard] << out if should_push_es_to_channel
+
     out << latest_events
-    out.callback { settings.connections.delete(out) }
+    out.callback do
+      settings.connections.delete(out)
+      settings.dashboard_channels[dashboard].delete out if should_push_es_to_channel
+    end
   end
 end
 
@@ -144,6 +156,12 @@ def send_event(id, body, target=nil)
   Sinatra::Application.settings.connections.each { |out| out << event }
 end
 
+def send_data_to_dashboard(dashboard, data)
+  data[:updatedAt] ||= Time.now.to_i
+  event = format_event(data.to_json)
+  Sinatra::Application.settings.dashboard_channels[dashboard.to_sym].each { |out| out << event }
+end
+
 def format_event(body, name=nil)
   str = ""
   str << "event: #{name}\n" if name
@@ -166,6 +184,12 @@ def tilt_html_engines
   Tilt.mappings.select do |_, engines|
     default_mime_type = engines.first.default_mime_type
     default_mime_type.nil? || default_mime_type == 'text/html'
+  end
+end
+
+tilt_html_engines.each do |suffix, _|
+  Dir[File.expand_path("*.#{suffix}", settings.views)].each do |file|
+    settings.dashboard_channels[File.basename(file, ".#{suffix}").to_sym] ||= []
   end
 end
 

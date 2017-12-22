@@ -103,7 +103,13 @@ Dashing.widgets = widgets = {}
 Dashing.lastEvents = lastEvents = {}
 Dashing.debugMode = false
 
-source = new EventSource('events')
+es_url = 'events'
+m = window.location.pathname.match(/\/(\w+)/)
+
+if m and m[1]
+  es_url += '?dashboard=' + m[1]
+
+source = new EventSource(es_url)
 source.addEventListener 'open', (e) ->
   console.log("Connection opened", e)
 
