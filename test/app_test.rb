@@ -104,6 +104,8 @@ class AppTest < Dashing::Test
   end
 
   def test_get_haml_dashboard
+    app.template_languages << :haml
+
     with_generated_project do |dir|
       File.write(File.join(dir, 'dashboards/hamltest.haml'), '.gridster')
       get '/hamltest'
@@ -113,6 +115,8 @@ class AppTest < Dashing::Test
   end
 
   def test_get_haml_widget
+    app.template_languages << :haml
+
     with_generated_project do |dir|
       File.write(File.join(dir, 'widgets/clock/clock.haml'), '%h1 haml')
       File.unlink(File.join(dir, 'widgets/clock/clock.html'))
@@ -156,6 +160,11 @@ class AppTest < Dashing::Test
       app.settings.public_folder = File.join(dir, 'new_project/public')
       app.settings.views = File.join(dir, 'new_project/dashboards')
       app.settings.root = File.join(dir, 'new_project')
+
+      app.settings.raise_errors = true
+      app.settings.dump_errors = false
+      app.settings.show_exceptions = false
+
       yield app.settings.root
     end
   end

@@ -41,8 +41,9 @@ set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
 set :default_dashboard, nil
 set :auth_token, nil
+set :template_languages, %i[html erb]
 
-if File.exists?(settings.history_file)
+if File.exist?(settings.history_file)
   set :history, YAML.load_file(settings.history_file)
 else
   set :history, {}
@@ -84,9 +85,9 @@ end
 
 get '/:dashboard' do
   protected!
-  tilt_html_engines.each do |suffix, _|
-    file = File.join(settings.views, "#{params[:dashboard]}.#{suffix}")
-    return render(suffix.to_sym, params[:dashboard].to_sym) if File.exist? file
+  settings.template_languages.each do |language|
+    file = File.join(settings.views, "#{params[:dashboard]}.#{language}")
+    return render(language, params[:dashboard].to_sym) if File.exist?(file)
   end
 
   halt 404
@@ -119,10 +120,11 @@ end
 
 get '/views/:widget?.html' do
   protected!
-  tilt_html_engines.each do |suffix, engines|
-    file = File.join(settings.root, "widgets", params[:widget], "#{params[:widget]}.#{suffix}")
-    return engines.first.new(file).render if File.exist? file
+  settings.template_languages.each do |language|
+    file = File.join(settings.root, "widgets", params[:widget], "#{params[:widget]}.#{language}")
+    return Tilt[language].new(file).render if File.exist?(file)
   end
+
   "Drats! Unable to find a widget file named: #{params[:widget]} to render."
 end
 
@@ -162,13 +164,6 @@ def first_dashboard
   files.sort.first
 end
 
-def tilt_html_engines
-  Tilt.mappings.select do |_, engines|
-    default_mime_type = engines.first.default_mime_type
-    default_mime_type.nil? || default_mime_type == 'text/html'
-  end
-end
-
 def require_glob(relative_glob)
   Dir[File.join(settings.root, relative_glob)].each do |file|
     require file
@@ -176,7 +171,7 @@ def require_glob(relative_glob)
 end
 
 settings_file = File.join(settings.root, 'config/settings.rb')
-require settings_file if File.exists?(settings_file)
+require settings_file if File.exist?(settings_file)
 
 {}.to_json # Forces your json codec to initialize (in the event that it is lazily loaded). Does this before job threads start.
 job_path = ENV["JOB_PATH"] || 'jobs'
