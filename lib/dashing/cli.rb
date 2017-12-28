@@ -34,7 +34,7 @@ module Dashing
     desc "generate (widget/dashboard/job) NAME", "Creates a new widget, dashboard, or job."
     def generate(type, name)
       public_send("generate_#{type}".to_sym, name)
-    rescue NoMethodError => e
+    rescue NoMethodError => _e
       puts "Invalid generator. Either use widget, dashboard, or job"
     end
 
@@ -50,7 +50,7 @@ module Dashing
       print set_color("and run ", :yellow)
       print set_color("bundle install ", :yellow, :bold)
       say set_color("if needed. More information for this widget can be found at #{public_url}", :yellow)
-    rescue OpenURI::HTTPError => http_error
+    rescue OpenURI::HTTPError => _http_error
       say set_color("Could not find gist at #{public_url}"), :red
     end
 
@@ -88,7 +88,7 @@ module Dashing
     def run_command(command)
       begin
         system(command)
-      rescue Interrupt => e
+      rescue Interrupt => _e
         say "Exiting..."
       end
     end
