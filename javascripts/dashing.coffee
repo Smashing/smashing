@@ -24,6 +24,21 @@ Batman.Filters.shortenedNumber = (num) ->
   else
     num
 
+Batman.Filters.shortenedBytes = (num) ->
+  return num if isNaN(num)
+  if num >= (1125899906842624)
+    (num / 1125899906842624).toFixed(1) + 'PB'
+  else if num >= (1099511627776)
+    (num / 1099511627776).toFixed(1) + 'TB'
+  else if num >= (1073741824)
+    (num / 1073741824).toFixed(1) + 'GB'
+  else if num >= (1048576)
+    (num / 1048576).toFixed(1) + 'MB'
+  else if num >= (1024)
+    (num / 1024).toFixed(1) + 'KB'
+  else
+    (num).toFixed(1) + 'B'
+
 class window.Dashing extends Batman.App
   @on 'reload', (data) ->
     window.location.reload(true)
