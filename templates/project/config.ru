@@ -6,6 +6,7 @@ configure do
   # See http://www.sinatrarb.com/intro.html > Available Template Languages on
   # how to add additional template languages.
   set :template_languages, %i[html erb]
+  set :show_exceptions, false
 
   helpers do
     def protected!
