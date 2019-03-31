@@ -43,6 +43,8 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  width: 100%;
+  height: 99%; // prevent a scroll bar
 }
 
 body {
@@ -51,6 +53,8 @@ body {
   font-size: 20px;
   color: $text-color;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100%;
 }
 
 b, strong {
@@ -115,11 +119,13 @@ h3 {
   margin: 0px auto;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  flex: 1;
 }
 
 .icon-background {
@@ -152,14 +158,16 @@ h3 {
   align-items:center;
   flex-direction: column;
   margin: $widget-margin;
-  width: $widget-width;
-  height: $widget-height;
+  min-width: $widget-width;
+  min-height: $widget-height;
+  flex: 1;
 }
 
 .widget[data-span-rows="2"] {
-  width: 2 * $widget-width;
+  min-width: 2 * $widget-width;
   padding-left: $widget-margin;
   padding-right: $widget-margin;
+  flex: 2;
 }
 
 .widget.status-warning {
@@ -205,6 +213,8 @@ h3 {
 
 #container {
   padding-top: 5px;
+  width: 100%;
+  height: 100%;
 }
 
 
