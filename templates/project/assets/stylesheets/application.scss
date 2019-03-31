@@ -163,7 +163,7 @@ h3 {
   flex: 1;
 }
 
-.widget[data-span-rows="2"] {
+.widget[data-span-cols="2"] {
   min-width: 2 * $widget-width;
   padding-left: $widget-margin;
   padding-right: $widget-margin;

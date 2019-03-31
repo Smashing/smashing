@@ -1,5 +1,5 @@
 <div class="grid">
   <div class="row">
-      <div data-span-rows="4" data-id="my_widget" data-view="Text"></div>
+      <div data-span-cols="4" data-id="my_widget" data-view="Text"></div>
   </div>
 </div>

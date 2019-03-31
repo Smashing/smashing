@@ -3,11 +3,11 @@
   <div class="row">
     <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard." data-moreinfo="Protip: You can resize this window"></div>
     <div data-id="synergy" data-view="Meter" data-title="Synergy" data-height="200" data-width="200" data-min="0" data-max="100" data-suffix="%"></div>
-    <div data-span-rows="2" data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
+    <div data-span-cols="2" data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
   </div>
   <div class="row">
-    <div data-span-rows="2" data-id="valuation" data-view="Number" data-title="Current Valuation" data-moreinfo="In billions" data-prefix="$"></div>
-    <div data-span-rows="2" data-id="convergence" data-view="Graph" data-title="Convergence" style="background-color:#ff9618"></div>
+    <div data-span-cols="2" data-id="valuation" data-view="Number" data-title="Current Valuation" data-moreinfo="In billions" data-prefix="$"></div>
+    <div data-span-cols="2" data-id="convergence" data-view="Graph" data-title="Convergence" style="background-color:#ff9618"></div>
   </div>
   <center><div style="font-size: 12px">Try this: curl -d '{ "auth_token": "YOUR_AUTH_TOKEN", "text": "Hey, Look what I can do!" }' \http://<%=request.host%>:<%=request.port%>/widgets/welcome</div></center>
 </div>
