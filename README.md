@@ -11,6 +11,8 @@ Feel free to submit issues for bugs, new features, and enhancements in [GitHub](
 ## Installation
 
 ```bash
+# Install build-essential
+$ sudo apt-get install build-essential
 # Install bundler
 $ gem install bundler
 # Install smashing
