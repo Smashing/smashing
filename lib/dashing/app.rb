@@ -44,7 +44,7 @@ set :auth_token, nil
 set :template_languages, %i[html erb]
 
 if File.exist?(settings.history_file)
-  set :history, YAML.load_file(settings.history_file)
+  set :history, YAML.load_file(settings.history_file, fallback: {})
 else
   set :history, {}
 end
