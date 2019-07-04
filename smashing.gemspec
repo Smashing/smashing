@@ -18,7 +18,11 @@ Gem::Specification.new do |s|
   s.add_dependency('sass', '~> 3.4.24')
   s.add_dependency('coffee-script', '~> 2.4.1')
   s.add_dependency('execjs', '~> 2.7.0')
-  s.add_dependency('sinatra', '~> 2.0.0')
+  if RUBY_VERSION <= "2.3.0"
+    s.add_dependency('sinatra', '= 2.0.4') 
+  else
+    s.add_dependency('sinatra', '~> 2.0.0')
+  end
   s.add_dependency('sinatra-contrib', '~> 2.0.0')
   s.add_dependency('thin', '~> 1.7.0')
   s.add_dependency('rufus-scheduler', '~> 3.4.2')
