@@ -137,6 +137,13 @@ h3 {
   list-style: none;
 }
 
+// https://github.com/Shopify/dashing/issues/110
+// Prevent widgets growing outside of their designated size
+.gridster li {
+  overflow: hidden;
+  display:  list-item;
+}
+
 .gs_w {
   width: 100%;
   display: table;
