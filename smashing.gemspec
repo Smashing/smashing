@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency('sprockets', '~> 3.7.1')
   s.add_dependency('rack', '~> 2.0.0')
 
-  s.add_development_dependency('rake', '~> 12.0.0')
+  s.add_development_dependency('rake', '~> 12.3.3')
   s.add_development_dependency('haml', '~> 5.0.1')
   s.add_development_dependency('rack-test', '~> 0.6.3')
   s.add_development_dependency('minitest', '~> 5.10.2')
