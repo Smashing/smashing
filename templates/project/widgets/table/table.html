@@ -1,0 +1,16 @@
+<h1 class="title" data-bind="title"></h1>
+
+<table>
+  <tr>
+    <th data-foreach-th="table_headers">
+      <span class="label" data-bind="th.value"></span></th>
+  </tr>
+  <tr data-foreach-item="items">
+    <td data-foreach-element="item">
+      <span class="label" data-bind="element.value"></span>
+    </td>
+  </tr>
+</table>
+
+<p class="more-info" data-bind="moreinfo"></p>
+<p class="updated-at" data-bind="updatedAtMessage"></p>
