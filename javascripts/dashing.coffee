@@ -96,7 +96,7 @@ Dashing.AnimatedValue =
     else
       timer = "interval_#{k}"
       num = if (!isNaN(@[k]) && @[k]?) then @[k] else 0
-      unless @[timer] || num == to
+      unless @[timer] || `num == to`
         to = parseFloat(to)
         num = parseFloat(num)
         up = to > num
