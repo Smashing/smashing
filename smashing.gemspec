@@ -27,7 +27,12 @@ Gem::Specification.new do |s|
   s.add_dependency('thin', '~> 1.7.0')
   s.add_dependency('rufus-scheduler', '~> 3.4.2')
   s.add_dependency('thor', '~> 0.19.4')
-  s.add_dependency('sprockets', '~> 3.7.1')
+  if RUBY_VERSION >= "2.5.0"
+    s.add_dependency('sprockets', '~> 4.0')
+    s.add_dependency('sassc', '~> 2.0')
+  else
+    s.add_dependency('sprockets', '~> 3.7.1')
+  end
   s.add_dependency('rack', '~> 2.0.0')
 
   s.add_development_dependency('rake', '~> 12.3.3')
