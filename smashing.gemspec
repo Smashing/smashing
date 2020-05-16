@@ -2,6 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'smashing'
+
   s.version     = '1.0.0'
   s.date        = '2016-10-23'
   s.executables = %w(smashing)
@@ -12,6 +13,16 @@ Gem::Specification.new do |s|
   s.author      = "Daniel Beauchamp"
   s.homepage    = 'http://smashing.github.io/smashing'
   s.license     = "MIT"
+
+  s.metadata = {
+    "bug_tracker_uri"   => "https://github.com/Smashing/smashing/issues",
+    # "changelog_uri"     => "https://github.com/Smashing/smashing/CHANGELOG.md",
+    "documentation_uri" => "https://github.com/Smashing/smashing/wiki",
+    "homepage_uri"      => "https://smashing.github.io/",
+    "mailing_list_uri"  => "https://gitter.im/Smashing/Lobby",
+    "source_code_uri"   => "https://github.com/Smashing/smashing/",
+    "wiki_uri"          => "https://github.com/Smashing/smashing/wiki"
+  }
 
   s.files = Dir['README.md', 'javascripts/**/*', 'templates/**/*','templates/**/.[a-z]*', 'lib/**/*']
 
