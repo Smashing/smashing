@@ -1,5 +1,18 @@
 # Changelog
 
+2020-??-?? - 1.2.0
+
+- [#151](https://github.com/Smashing/smashing/pull/151) Upgrading font awesome to 5.11
+- [#153](https://github.com/Smashing/smashing/pull/153) Fix GitHub security alert updating to rake 12.3.3
+- [#147](https://github.com/Smashing/smashing/pull/147) Checking for existing displayedValue
+- [#141](https://github.com/Smashing/smashing/pull/141) Disable warnings in test, circular require warning we're clouding up
+- [#135](https://github.com/Smashing/smashing/pull/135) Fixing favicon location
+- [#137](https://github.com/Smashing/smashing/pull/137) Use {} as fallback for history.yaml
+- [#103](https://github.com/Smashing/smashing/pull/103) Don't display exception pages to users by default
+- [#107](https://github.com/Smashing/smashing/pull/107) Update to latest gridster to fix touch input bug
+- [#95](https://github.com/Smashing/smashing/pull/95) Silence rake warnings about unused vars
+- [#96](https://github.com/Smashing/smashing/pull/96) Added Batman filter 'shortenedBytes'
+
 2017-12-25 - 1.1.0
 
 - [#25](https://github.com/Smashing/smashing/pull/25) Add data transformation method to widget base
