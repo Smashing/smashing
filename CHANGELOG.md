@@ -1,6 +1,6 @@
 # Changelog
 
-2020-??-?? - 1.2.0
+## 2020-05-19 - 1.2.0
 
 - [#151](https://github.com/Smashing/smashing/pull/151) Upgrading font awesome to 5.11
 - [#153](https://github.com/Smashing/smashing/pull/153) Fix GitHub security alert updating to rake 12.3.3
@@ -13,7 +13,7 @@
 - [#95](https://github.com/Smashing/smashing/pull/95) Silence rake warnings about unused vars
 - [#96](https://github.com/Smashing/smashing/pull/96) Added Batman filter 'shortenedBytes'
 
-2017-12-25 - 1.1.0
+## 2017-12-25 - 1.1.0
 
 - [#25](https://github.com/Smashing/smashing/pull/25) Add data transformation method to widget base
 - [#27](https://github.com/Smashing/smashing/pull/27) Add error string when widget not rendered
@@ -29,6 +29,6 @@
 - [4e2b7f](https://github.com/Smashing/smashing/commit/4e2b7f) Update all gems
 - [305193](https://github.com/Smashing/smashing/commit/305193) Facilitate testing
 
-2016-10-23 - 1.0.0
+## 2016-10-23 - 1.0.0
 
 - First release after Dashing: https://github.com/Shopify/dashing/issues/711
