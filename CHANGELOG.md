@@ -1,5 +1,9 @@
 # Changelog
 
+## 2020-??-?? - 1.3.0
+
+- [#157](https://github.com/Smashing/smashing/pull/157) Update gems
+
 ## 2020-05-19 - 1.2.0
 
 - [#151](https://github.com/Smashing/smashing/pull/151) Upgrading font awesome to 5.11

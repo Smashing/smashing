@@ -3,7 +3,8 @@ require 'sprockets'
 require 'sinatra/content_for'
 require 'rufus/scheduler'
 require 'coffee-script'
-require 'sass'
+require 'sass' if RUBY_VERSION < "2.5.0"
+require 'sassc' if RUBY_VERSION >= "2.5.0"
 require 'json'
 require 'yaml'
 require 'thin'
