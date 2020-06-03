@@ -96,7 +96,10 @@ Dashing.AnimatedValue =
     else
       timer = "interval_#{k}"
       num = if (!isNaN(@[k]) && @[k]?) then @[k] else 0
-      unless @[timer] || num == to
+      # NOTE: We are using backticks in the num == to below as that is a comparison with string
+      # and float and CoffeeScript compiles it to ===, causing it to always fail - see issue #155
+      # https://github.com/Smashing/smashing/pull/155
+      unless @[timer] || `num == to`
         to = parseFloat(to)
         num = parseFloat(num)
         up = to > num
