@@ -1,6 +1,6 @@
 # Changelog
 
-## 2020-??-?? - 1.3.0
+## 2020-06-04 - 1.3.0
 
 - [#157](https://github.com/Smashing/smashing/pull/157) Update gems
 - [#155](https://github.com/Smashing/smashing/pull/155) Fix bug causing AnimatedValue to freeze after same value is entered
