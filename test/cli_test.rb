@@ -5,6 +5,15 @@ class CLITest < Dashing::Test
     @cli = Dashing::CLI.new
   end
 
+  def test_version_command
+    version = Dashing::VERSION
+    output, _ = capture_io do
+      @cli.__print_version
+    end
+
+    assert_includes output, "#{version}"
+  end
+
   def test_new_task_creates_project_directory
     app_name = 'custom_dashboard'
     @cli.stubs(:directory).with(:project, app_name).once
