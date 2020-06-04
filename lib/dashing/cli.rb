@@ -1,5 +1,6 @@
 require 'thor'
 require 'open-uri'
+require 'dashing/version'
 
 module Dashing
   class CLI < Thor
@@ -23,6 +24,12 @@ module Dashing
           directory(type.to_sym, "#{type}s")
         end
       end
+    end
+
+    desc "--version, -v", "Prints the version"
+    map %w[--version -v] => :__print_version
+    def __print_version
+      say "#{Dashing::VERSION}"
     end
 
     desc "new PROJECT_NAME", "Sets up ALL THE THINGS needed for your dashboard project."
