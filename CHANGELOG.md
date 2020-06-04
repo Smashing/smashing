@@ -5,6 +5,7 @@
 - [#157](https://github.com/Smashing/smashing/pull/157) Update gems
 - [#155](https://github.com/Smashing/smashing/pull/155) Fix bug causing AnimatedValue to freeze after same value is entered
 - [#162](https://github.com/Smashing/smashing/pull/162) Add version command
+- [#163](https://github.com/Smashing/smashing/pull/163) Disable the twitter job and comment out the gem dependency
 
 ## 2020-05-19 - 1.2.0
 
