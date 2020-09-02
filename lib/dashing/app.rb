@@ -36,7 +36,7 @@ set :sprockets,     Sprockets::Environment.new(settings.root)
 set :assets_prefix, '/assets'
 set :digest_assets, false
 set :server, 'thin'
-set :connections, []
+set :connections, {}
 set :history_file, 'history.yml'
 set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
@@ -77,9 +77,10 @@ end
 get '/events', :provides => 'text/event-stream' do
   protected!
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
+  ids = params[:ids].to_s.split(',').to_set
   stream :keep_open do |out|
-    settings.connections << out
-    out << latest_events
+    settings.connections[out] = ids
+    out << latest_events(ids)
     out.callback { settings.connections.delete(out) }
   end
 end
@@ -144,9 +145,9 @@ def send_event(id, body, target=nil)
   body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i
   event = format_event(body.to_json, target)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
-  Sinatra::Application.settings.connections.each { |out|
+  Sinatra::Application.settings.connections.each { |out, ids|
     begin
-      out << event
+      out << event if ids.include?(id)
     rescue IOError => e # if the socket is closed an IOError is thrown
       Sinatra::Application.settings.connections.delete(out)
     end
@@ -159,9 +160,9 @@ def format_event(body, name=nil)
   str << "data: #{body}\n\n"
 end
 
-def latest_events
-  settings.history.inject("") do |str, (_id, body)|
-    str << body
+def latest_events(ids)
+  settings.history.each_with_object("") do |(id, body), str|
+    str << body if ids.include?(id)
   end
 end
 
