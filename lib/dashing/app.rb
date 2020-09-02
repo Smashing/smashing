@@ -80,7 +80,9 @@ get '/events', :provides => 'text/event-stream' do
   ids = params[:ids].to_s.split(',').to_set
   stream :keep_open do |out|
     settings.connections[out] = ids
-    out << latest_events(ids)
+    settings.history.each do |id, event|
+      out << event if ids.include?(id)
+    end
     out.callback { settings.connections.delete(out) }
   end
 end
@@ -158,12 +160,6 @@ def format_event(body, name=nil)
   str = ""
   str << "event: #{name}\n" if name
   str << "data: #{body}\n\n"
-end
-
-def latest_events(ids)
-  settings.history.each_with_object("") do |(id, body), str|
-    str << body if ids.include?(id)
-  end
 end
 
 def first_dashboard
