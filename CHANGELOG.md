@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-??-?? - 1.3.1
+
+- [177](https://github.com/Smashing/smashing/pull/177) Remove websocket connections that have been closed in send_event (thanks @ssgelm)
+
 ## 2020-06-04 - 1.3.0
 
 - [#157](https://github.com/Smashing/smashing/pull/157) Update gems
