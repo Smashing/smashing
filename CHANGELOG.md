@@ -1,5 +1,7 @@
 # Changelog
 
+## 2021-??-?? - 1.3.2
+
 ## 2021-01-30 - 1.3.1
 
 - [177](https://github.com/Smashing/smashing/pull/177) Remove websocket connections that have been closed in send_event (thanks @ssgelm)
