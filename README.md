@@ -1,3 +1,4 @@
+[![Build](https://github.com/Smashing/smashing/actions/workflows/main.yml/badge.svg)](https://github.com/Smashing/smashing/actions/workflows/main.yml)
 [![Gitter chat](https://badges.gitter.im/smashing.svg)](https://gitter.im/Smashing)
 
 # [Smashing](https://github.com/Smashing/smashing/wiki)
