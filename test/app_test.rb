@@ -4,7 +4,9 @@ require 'haml'
 class AppTest < Dashing::Test
   def setup
     @connection = []
-    app.settings.connections = [@connection]
+    # stop sinatra from handling Hash value specially which makes it merge new value into previous one
+    app.settings.connections = nil
+    app.settings.connections = {@connection => ['some_widget']}
     app.settings.auth_token = nil
     app.settings.default_dashboard = nil
     app.settings.history_file = File.join(Dir.tmpdir, 'history.yml')
