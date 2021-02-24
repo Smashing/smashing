@@ -149,7 +149,7 @@ def send_event(id, body, target=nil)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
   Sinatra::Application.settings.connections.each { |out, ids|
     begin
-      out << event if ids.include?(id)
+      out << event if target == 'dashboards' || ids.include?(id)
     rescue IOError => e # if the socket is closed an IOError is thrown
       Sinatra::Application.settings.connections.delete(out)
     end
