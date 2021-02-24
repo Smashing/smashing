@@ -49,7 +49,7 @@ not be merged into the project.
 
 Please adhere to the coding conventions used throughout a project (indentation,
 accurate comments, etc.) and any other requirements (such as test coverage).
-All code submitted via Pull Request will be dicussed and critiqued in a
+All code submitted via Pull Request will be discussed and critiqued in a
 respectful manner.
 
 GitHub has [excellent documentation on how to use Pull Requests.](https://help.github.com/articles/using-pull-requests/)
