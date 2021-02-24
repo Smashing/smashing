@@ -134,7 +134,7 @@ end
 
 Thin::Server.class_eval do
   def stop_with_connection_closing
-    Sinatra::Application.settings.connections.dup.each(&:close)
+    Sinatra::Application.settings.connections.dup.each_key(&:close)
     stop_without_connection_closing
   end
 
