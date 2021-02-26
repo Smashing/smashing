@@ -1,6 +1,6 @@
 # Changelog
 
-## 2021-??-?? - 1.3.2
+## 2021-02-27 - 1.3.2
 
 - [179](https://github.com/Smashing/smashing/pull/179) Replace Travis CI by GH actions
 - [178](https://github.com/Smashing/smashing/pull/178) Relax dependencies; pinned minor, free patch version (thanks @dylanratcliffe)
