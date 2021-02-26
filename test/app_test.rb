@@ -79,6 +79,38 @@ class AppTest < Dashing::Test
     assert_equal 8, parse_data(@connection[0])['value']
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+  def test_get_events_by_id
+    with_generated_project do
+      post '/widgets/synergy', JSON.generate({ value: 3 })
+      assert_equal 204, last_response.status
+
+      post '/widgets/valuation', JSON.generate({ value: 'a' })
+      assert_equal 204, last_response.status
+
+      get '/events?ids=synergy%2Cvaluation'
+      assert_equal 200, last_response.status
+
+      events = last_response.body.split(/\n+/) # two events, printed with blank lines separating them
+      synergy_event = parse_data(events[0])
+      valuation_event = parse_data(events[1])
+      assert_equal ['synergy', 3], [synergy_event['id'], synergy_event['value']]
+      assert_equal %w[valuation a], [valuation_event['id'], valuation_event['value']]
+    end
+  end
+
+  def test_get_events_by_unknown_id
+    with_generated_project do
+      post '/widgets/synergy', JSON.generate({ value: 3 })
+      assert_equal 204, last_response.status
+
+      get '/events?ids=unknown'
+      assert_equal 200, last_response.status
+      assert_equal '', last_response.body
+    end
+  end
+
   def test_dashboard_events
     post '/dashboards/my_super_sweet_dashboard', JSON.generate({event: 'reload'})
     assert_equal 204, last_response.status
