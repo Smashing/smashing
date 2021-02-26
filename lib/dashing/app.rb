@@ -36,7 +36,7 @@ set :sprockets,     Sprockets::Environment.new(settings.root)
 set :assets_prefix, '/assets'
 set :digest_assets, false
 set :server, 'thin'
-set :connections, []
+set :connections, {}
 set :history_file, 'history.yml'
 set :public_folder, File.join(settings.root, 'public')
 set :views, File.join(settings.root, 'dashboards')
@@ -54,7 +54,7 @@ end
   settings.sprockets.append_path("assets/#{path}")
 end
 
-['widgets', File.expand_path('../../../javascripts', __FILE__)]. each do |path|
+['widgets', File.expand_path('../../../javascripts', __FILE__)].each do |path|
   settings.sprockets.append_path(path)
 end
 
@@ -77,9 +77,12 @@ end
 get '/events', :provides => 'text/event-stream' do
   protected!
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
+  ids = params[:ids].to_s.split(',').to_set
   stream :keep_open do |out|
-    settings.connections << out
-    out << latest_events
+    settings.connections[out] = ids
+    settings.history.each do |id, event|
+      out << event if ids.include?(id)
+    end
     out.callback { settings.connections.delete(out) }
   end
 end
@@ -131,7 +134,7 @@ end
 
 Thin::Server.class_eval do
   def stop_with_connection_closing
-    Sinatra::Application.settings.connections.dup.each(&:close)
+    Sinatra::Application.settings.connections.dup.each_key(&:close)
     stop_without_connection_closing
   end
 
@@ -141,12 +144,12 @@ end
 
 def send_event(id, body, target=nil)
   body[:id] = id
-  body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i 
+  body[:updatedAt] ||= (Time.now.to_f * 1000.0).to_i
   event = format_event(body.to_json, target)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
-  Sinatra::Application.settings.connections.each { |out|
+  Sinatra::Application.settings.connections.each { |out, ids|
     begin
-      out << event
+      out << event if target == 'dashboards' || ids.include?(id)
     rescue IOError => e # if the socket is closed an IOError is thrown
       Sinatra::Application.settings.connections.delete(out)
     end
@@ -157,12 +160,6 @@ def format_event(body, name=nil)
   str = ""
   str << "event: #{name}\n" if name
   str << "data: #{body}\n\n"
-end
-
-def latest_events
-  settings.history.inject("") do |str, (_id, body)|
-    str << body
-  end
 end
 
 def first_dashboard
