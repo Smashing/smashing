@@ -95,10 +95,10 @@ class AppTest < Dashing::Test
       assert_equal 200, last_response.status
 
       events = last_response.body.split(/\n+/) # two events, printed with blank lines separating them
-      synergy_event = parse_data(events[0])
-      valuation_event = parse_data(events[1])
-      assert_equal ['synergy', 3], [synergy_event['id'], synergy_event['value']]
-      assert_equal %w[valuation a], [valuation_event['id'], valuation_event['value']]
+      assert_equal 2, events.length
+
+      assert_equal ['synergy', 3], parse_data(events[0]).values_at('id', 'value')
+      assert_equal %w[valuation a], parse_data(events[1]).values_at('id', 'value')
     end
   end
 
