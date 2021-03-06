@@ -77,11 +77,11 @@ end
 get '/events', :provides => 'text/event-stream' do
   protected!
   response.headers['X-Accel-Buffering'] = 'no' # Disable buffering for nginx
-  ids = params[:ids].to_s.split(',').to_set
+  ids = params[:ids] ? params[:ids].split(',').to_set : nil
   stream :keep_open do |out|
     settings.connections[out] = ids
     settings.history.each do |id, event|
-      out << event if ids.include?(id)
+      out << event if ids.nil? || ids.include?(id)
     end
     out.callback { settings.connections.delete(out) }
   end
@@ -149,7 +149,7 @@ def send_event(id, body, target=nil)
   Sinatra::Application.settings.history[id] = event unless target == 'dashboards'
   Sinatra::Application.settings.connections.each { |out, ids|
     begin
-      out << event if target == 'dashboards' || ids.include?(id)
+      out << event if target == 'dashboards' || ids.nil? || ids.include?(id)
     rescue IOError => e # if the socket is closed an IOError is thrown
       Sinatra::Application.settings.connections.delete(out)
     end

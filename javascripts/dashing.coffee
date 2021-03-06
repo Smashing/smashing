@@ -121,11 +121,16 @@ Dashing.AnimatedValue =
 Dashing.widgets = widgets = {}
 Dashing.lastEvents = lastEvents = {}
 Dashing.debugMode = false
+Dashing.filterEvents = true
 
 Dashing.on 'run', ->
   @layout.on 'ready', -> # run only when all widgets are created
     ids = Object.keys(Dashing.widgets)
-    source = new EventSource('events?ids=' + encodeURIComponent(ids.join(',')))
+    url = if Dashing.filterEvents
+      'events?ids=' + encodeURIComponent(ids.join(','))
+    else
+      'events'
+    source = new EventSource(url)
     source.addEventListener 'open', (e) ->
       console.log("Connection opened", e)
 
