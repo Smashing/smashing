@@ -1,6 +1,8 @@
 # Changelog
 
-## 2021-??-?? - 1.3.3
+## 2021-03-06 - 1.3.3
+
+- [182](https://github.com/Smashing/smashing/pull/182) Create EventSource at the right moment
 
 ## 2021-02-27 - 1.3.2
 

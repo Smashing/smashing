@@ -123,7 +123,7 @@ Dashing.lastEvents = lastEvents = {}
 Dashing.debugMode = false
 
 Dashing.on 'run', ->
-  setTimeout -> # run only when all widgets are created
+  @layout.on 'ready', -> # run only when all widgets are created
     ids = Object.keys(Dashing.widgets)
     source = new EventSource('events?ids=' + encodeURIComponent(ids.join(',')))
     source.addEventListener 'open', (e) ->
@@ -153,7 +153,6 @@ Dashing.on 'run', ->
         console.log("Received data for dashboards", data)
       if data.dashboard is '*' or window.location.pathname is "/#{data.dashboard}"
         Dashing.fire data.event, data
-  , 0
 
 $(document).ready ->
   Dashing.run()
