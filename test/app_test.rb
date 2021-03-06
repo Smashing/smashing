@@ -113,6 +113,21 @@ class AppTest < Dashing::Test
     end
   end
 
+  def test_get_events_without_filter
+    with_generated_project do
+      post '/widgets/foobar', JSON.generate({ value: 'x' })
+      assert_equal 204, last_response.status
+
+      get '/events'
+      assert_equal 200, last_response.status
+
+      events = last_response.body.split(/\n+/)
+      assert_equal 1, events.length
+
+      assert_equal ['foobar', 'x'], parse_data(events[0]).values_at('id', 'value')
+    end
+  end
+
   def test_dashboard_events
     post '/dashboards/my_super_sweet_dashboard', JSON.generate({event: 'reload'})
     assert_equal 204, last_response.status
