@@ -1,3 +1,3 @@
 module Dashing
-  VERSION = "1.3.4.pre".freeze
+  VERSION = "1.3.4".freeze
 end
