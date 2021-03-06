@@ -1,5 +1,7 @@
 # Changelog
 
+## 2021-??-?? - 1.3.5
+
 ## 2021-03-07 - 1.3.4
 
 - [184](https://github.com/Smashing/smashing/pull/184) Add switch to not filter events (thanks @toy)
