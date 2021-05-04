@@ -5,6 +5,8 @@
 
 Smashing, the spiritual successor to [Dashing](https://github.com/Shopify/dashing), is a Sinatra based framework that lets you build excellent dashboards. It looks especially great on TVs.
 
+![Smashing logo](./.github/docs/assets/screenshot.png)
+
 ## Community
 
 Feel free to submit issues for bugs, new features, and enhancements in [GitHub](https://github.com/Smashing/smashing/issues). For more general questions, or help with widgets, please use the [gitter chatroom](https://gitter.im/Smashing).
