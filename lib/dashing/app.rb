@@ -25,6 +25,10 @@ helpers do
     # override with auth logic
   end
 
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+
   def authenticated?(token)
     return true unless settings.auth_token
     token && Rack::Utils.secure_compare(settings.auth_token, token)
@@ -129,7 +133,7 @@ get '/views/:widget?.html' do
     return Tilt[language].new(file).render if File.exist?(file)
   end
 
-  "Drats! Unable to find a widget file named: #{params[:widget]} to render."
+  "Drats! Unable to find a widget file named: #{h(params[:widget])} to render."
 end
 
 Thin::Server.class_eval do
