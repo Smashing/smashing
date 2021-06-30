@@ -1,8 +1,13 @@
 # Changelog
 
-## 2021-??-?? - 1.3.5
+## 2021-07-01 - 1.3.5
 
-- [186](https://github.com/Smashing/smashing/pull/186) Escape widget error message (thanks @gebhardtr)
+- [186](https://github.com/Smashing/smashing/pull/186) Escape widget error message (thanks @gebhardtr) ([CVE-2021-35440](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-35440))
+- [142](https://github.com/Smashing/smashing/issues/142) Add screenshots
+- [166](https://github.com/Smashing/smashing/issues/166) Update installation instructions docs for Windows
+- [168](https://github.com/Smashing/smashing/issues/168) Update installation instructions docs for Windows
+- [174](https://github.com/Smashing/smashing/issues/174) Update troubleshooting docs with note about thin_http_parser error
+- [167](https://github.com/Smashing/smashing/issues/167) Update troubleshooting docs with note about raspberry pi error
 
 ## 2021-03-07 - 1.3.4
 
