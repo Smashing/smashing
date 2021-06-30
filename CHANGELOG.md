@@ -1,5 +1,7 @@
 # Changelog
 
+## 2021-??-?? - 1.3.6
+
 ## 2021-07-01 - 1.3.5
 
 - [186](https://github.com/Smashing/smashing/pull/186) Escape widget error message (thanks @gebhardtr) ([CVE-2021-35440](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-35440))
