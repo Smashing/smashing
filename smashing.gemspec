@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.name        = 'smashing'
 
-  s.version     = '1.3.6'
+  s.version     = '1.3.7.pre'
   s.date        = '2022-12-08'
   s.executables = %w(smashing)
 

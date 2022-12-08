@@ -1,5 +1,7 @@
 # Changelog
 
+## 2023-??-?? - 1.3.7
+
 ## 2022-12-08 - 1.3.6
 
 - [190](https://github.com/Smashing/smashing/pull/190) Add sprockets precompile rake task
