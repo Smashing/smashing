@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
     s.add_dependency('sprockets', '~> 4.0')
     s.add_dependency('sassc', '~> 2.0')
   end
-  s.add_dependency('rack', '~> 2.2')
+  s.add_dependency('rack', '>= 2.2', '< 4.0')
 
   s.add_development_dependency('rake', '~> 12.3.3')
   s.add_development_dependency('haml', '~> 5.0.1')
