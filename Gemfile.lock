@@ -7,7 +7,7 @@ PATH
       rack (>= 2.2, < 4.0)
       rufus-scheduler (~> 3.6)
       sassc (~> 2.0)
-      sinatra (~> 2.0)
+      sinatra (~> 2.2)
       sinatra-contrib (~> 2.0)
       sprockets (~> 4.0)
       thin (~> 1.7)

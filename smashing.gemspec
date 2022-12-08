@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   if RUBY_VERSION < "2.4.0"
     s.add_dependency('sinatra', '= 2.0.4') 
   else
-    s.add_dependency('sinatra', '~> 2.0')
+    s.add_dependency('sinatra', '~> 2.2')
   end
   s.add_dependency('sinatra-contrib', '~> 2.0')
   s.add_dependency('thin', '~> 1.7')
