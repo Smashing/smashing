@@ -14,4 +14,5 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          bundler: donotexist.lock # to prevent it from using Gemfile.lock as it has conditionals
       - run: bundle exec rake
