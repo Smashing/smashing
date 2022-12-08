@@ -4,6 +4,7 @@
 
 - [190](https://github.com/Smashing/smashing/pull/190) Add sprockets precompile rake task
 - [196](https://github.com/Smashing/smashing/pull/196) Replaced open with URI.open, as Kernel#open was deprecated in Ruby 2.7 and doens't work anymore with Ruby 3 (thanks @thomaswitt)
+- [197](https://github.com/Smashing/smashing/pull/197) Update rack requirement from ~> 2.2 to >= 2.2, < 4.0 (thanks to @dependabot)
 
 ## 2021-07-01 - 1.3.5
 
