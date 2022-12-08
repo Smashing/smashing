@@ -11,7 +11,7 @@ module Dashing
     end
 
     def get_json(url)
-      response = open(url).read
+      response = URI.open(url).read
       JSON.parse(response)
     end
   end
