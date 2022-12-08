@@ -1,7 +1,13 @@
 *DS_STORE
 *.gem
+
+.bundle/
+vendor/
+
 coverage/
 log/
 tmp/
+
 .ruby-version
+
 history.yml
