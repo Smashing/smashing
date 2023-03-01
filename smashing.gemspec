@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "bug_tracker_uri"   => "https://github.com/Smashing/smashing/issues",
-    # "changelog_uri"     => "https://github.com/Smashing/smashing/CHANGELOG.md",
+    "changelog_uri"     => "https://github.com/Smashing/smashing/blob/master/CHANGELOG.md",
     "documentation_uri" => "https://github.com/Smashing/smashing/wiki",
     "homepage_uri"      => "https://smashing.github.io/",
     "mailing_list_uri"  => "https://gitter.im/Smashing/Lobby",
