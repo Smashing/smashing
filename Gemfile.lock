@@ -44,7 +44,7 @@ GEM
     mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     raabro (1.4.0)
-    rack (2.2.4)
+    rack (2.2.6.3)
     rack-protection (2.2.4)
       rack
     rack-test (0.6.3)
