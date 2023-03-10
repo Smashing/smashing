@@ -2,6 +2,8 @@
 
 ## 2023-??-?? - 1.3.7
 
+- [199](https://github.com/Smashing/smashing/pull/199)  Bump rack from 2.2.4 to 2.2.6.3
+
 ## 2022-12-08 - 1.3.6
 
 - [190](https://github.com/Smashing/smashing/pull/190) Add sprockets precompile rake task
