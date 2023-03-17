@@ -142,7 +142,7 @@ class AppTest < Dashing::Test
     with_generated_project do
       get '/sampletv'
       assert_equal 200, last_response.status
-      assert_includes last_response.body, 'class="gridster"'
+      assert_includes last_response.body, 'class="grid"'
       assert_includes last_response.body, "DOCTYPE"
     end
   end

@@ -1,7 +1,5 @@
-<div class="gridster">
-  <ul>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="my_widget" data-view="Text"></div>
-    </li>
-  </ul>
+<div class="grid">
+  <div class="row">
+      <div data-span-cols="4" data-id="my_widget" data-view="Text"></div>
+  </div>
 </div>

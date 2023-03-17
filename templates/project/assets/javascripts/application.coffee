@@ -8,18 +8,22 @@
 console.log("Yeah! The dashboard has started!")
 
 Dashing.on 'ready', ->
-  Dashing.widget_margins ||= [5, 5]
-  Dashing.widget_base_dimensions ||= [300, 360]
+  set_size()
   Dashing.numColumns ||= 4
 
-  contentWidth = (Dashing.widget_base_dimensions[0] + Dashing.widget_margins[0] * 2) * Dashing.numColumns
+handle_resize = ->
+  set_size()
+  $(".rickshaw_graph svg").each (i, elem) -> elem.remove()
+  for widget_type of Dashing.widgets
+    for widget_name of Dashing.widgets[widget_type]
+      widget = Dashing.widgets[widget_type][widget_name]
+      if widget.graph != undefined
+        widget.graph = undefined
+        widget.ready()
+  console.log("Resized widgets to " + Dashing.widget_base_dimensions + ".")
 
-  Batman.setImmediate ->
-    $('.gridster').width(contentWidth)
-    $('.gridster ul:first').gridster
-      widget_margins: Dashing.widget_margins
-      widget_base_dimensions: Dashing.widget_base_dimensions
-      avoid_overlapped_widgets: !Dashing.customGridsterLayout
-      draggable:
-        stop: Dashing.showGridsterInstructions
-        start: -> Dashing.currentWidgetPositions = Dashing.getWidgetPositions()
+set_size = ->
+   Dashing.widget_base_dimensions = [$(".widget").width(), $(".widget").height()];
+   Dashing.widget_margins = [parseInt($(".widget").css("margin-top")), parseInt($(".widget").css("margin-left"))]
+
+window.onresize = handle_resize
